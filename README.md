@@ -65,23 +65,33 @@ Sample programs (all bug-free) are in the `samples/` folder:
 
 ```
 samples/
-  c/main.c
-  cpp/main.cpp
-  java/Main.java
-  python/sample.py
+  main.c
+  main.cpp
+  Main.java
+  sample.py
 ```
 
-1. Introduce a bug in a sample file and **save** it. For example, in `samples/cpp/main.cpp` change `i <= n` to `i < n` in `factorial`.
-2. Run the agent on that folder:
+1. Introduce a bug in a sample file and **save** it. For example, in `samples/main.cpp` change `i <= n` to `i < n` in `factorial`.
+2. Run the agent on that file:
 
 ```bash
-uv run agent.py --dir samples/cpp
+uv run agent.py --dir samples/main.cpp
 ```
+
+`--dir` accepts a **single code file** (the agent works on that file only) or a **folder** (it scans every supported file inside). The same works for the other samples:
+
+```bash
+uv run agent.py --dir samples/main.c
+uv run agent.py --dir samples/Main.java
+uv run agent.py --dir samples/sample.py
+```
+
+Tip: use one file per run. Pointing the agent at the whole `samples` folder lets it see all four languages at once, which can confuse it when they share function names.
 
 3. When asked, describe the bug: `factorial(5) prints 24 instead of 120`
 4. Watch the agent work, then test your program and answer `y` or `n`.
 
-Run commands for each sample:
+Run commands for each sample (run them inside the `samples` folder):
 
 | Language | Build and run |
 |----------|---------------|
